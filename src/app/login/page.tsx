@@ -1,6 +1,6 @@
 import { Box, Flex, Text, VStack } from '@chakra-ui/react';
 import LoginForm from '@/components/login-form/LoginForm';
-import Logo from '@/components/logo/Logo';
+import Logo from '@/app/login/logo/Logo';
 
 export default function LoginPage() {
 

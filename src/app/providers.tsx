@@ -4,14 +4,14 @@ import { cookies } from 'next/headers';
 
 export const Providers = ({ children }: { children: React.ReactNode }) => {
 
-  // Support for Chakra color mode in SSR with cookies
-  const cookieStore = cookies();
-  const defaultTheme = 'dark';
-  const uiColorMode = (cookieStore.get('chakra-ui-color-mode')?.value as 'light' | 'dark') || defaultTheme;
+  // Support for Chakra color mode in SSR with cookies / will trigger dynamic SSR due to cookies()
+  // const cookieStore = cookies();
+  // const defaultTheme = 'dark';
+  // const uiColorMode = (cookieStore.get('chakra-ui-color-mode')?.value as 'light' | 'dark') || defaultTheme;
 
   // List of providers
   const providers: { component: React.ElementType, props: Record<string, unknown>}[] = [
-    { component: ThemeProvider, props: { colorMode: uiColorMode } },
+    { component: ThemeProvider, props: { colorMode: 'dark' } },
     { component: SessionProvider, props: {} },
   ];
 

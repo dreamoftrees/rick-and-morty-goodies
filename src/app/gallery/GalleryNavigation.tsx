@@ -7,6 +7,7 @@ import NextLink from 'next/link';
 
 /**
  * Gallery Navigation Component.
+ * Prefetch the next pages full page data.
  * TODO: Worth considering refactoring the paging to be lazy loaded based on scroll / or virtualized.
  * @param onChange
  * @param pageInfo
@@ -39,7 +40,7 @@ export default function GalleryNavigation({
 
       {pageInfo.next && (
         <Tooltip label={`Next`}>
-          <NextLink href={`/gallery/${pageInfo.next}`}>
+          <NextLink href={`/gallery/${pageInfo.next}`} prefetch={true}>
             <IconButton
               colorScheme="blue"
               aria-label="Next Page"

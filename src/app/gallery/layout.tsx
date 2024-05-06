@@ -5,7 +5,7 @@ import {
 } from '@chakra-ui/react';
 
 /**
- * Shared layout across the Gallery section for the header, could be used across all authenticated pages
+ * Shared layout across the Gallery section for a consistent header with partial rendering of content, could be used across all authenticated pages
  * via route grouping or a higher authenticated route ie. /authenticated/gallery
  * @param props
  * @constructor

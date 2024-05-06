@@ -66,7 +66,7 @@ export default function GalleryItemDetail({ id }: GalleryItemDetailProps) {
       setLoaded(true);
       setItemDetail(result.data.character);
     });
-  }, []);
+  }, [id]);
 
   return (
     <Card maxW="md">
