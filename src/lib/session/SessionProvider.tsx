@@ -25,15 +25,20 @@ export const SessionProvider = ({ children }: { children: ReactNode }): any => {
       try {
         const result = await fetch('/api/session');
         if (!result.ok) {
-          throw new Error('Failed to fetch session data');
+          if (result.status === 404) {
+            // No session found
+            setProfile(null);
+          } else {
+            throw new Error('Failed to fetch session data');
+          }
+        } else {
+          const sessionProfile: SessionProfile = await result.json();
+          setProfile(sessionProfile);
         }
-
-        const sessionProfile: SessionProfile = await result.json();
-        setProfile(sessionProfile);
       } catch (error) {
         console.error('Error loading session', error);
         setProfile(null);
-        // Handle error // HTTP 404 // auto logout?
+        // Handle error
       }
     };
 
