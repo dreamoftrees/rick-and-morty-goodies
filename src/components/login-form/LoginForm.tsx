@@ -11,6 +11,7 @@ export default function LoginForm({
 }: {
   submitLabel?: string;
 }) {
+  const [loading, setLoading] = useState(false);
   const { login, name, title } = useSession();
   const router = useRouter();
   const [form, setForm] = useState<LoginParams>({
@@ -25,9 +26,11 @@ export default function LoginForm({
     if (validateForm()) {
       // Form is valid, handle submission
       try {
+        setLoading(true);
         await login(form);
         router.push('/gallery');
       } catch (error) {
+        setLoading(false);
         console.error('Error logging in', error);
         // Handle error
       }
@@ -114,7 +117,10 @@ export default function LoginForm({
         )}
       </FormControl>
 
-      <Button size="lg" onClick={handleSubmit} colorScheme="blue">
+      <Button isLoading={loading}
+              onClick={handleSubmit}
+              size="lg"
+              colorScheme="blue">
         {submitLabel}
       </Button>
     </Stack>

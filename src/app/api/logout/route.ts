@@ -6,7 +6,7 @@ import { NextRequest } from 'next/server';
  * @param response
  * @constructor
  */
-export async function GET (request: NextRequest, response: Response) {
+export async function POST (request: NextRequest, response: Response) {
 
   // Clear the authentication cookie
   const headers = new Headers({
