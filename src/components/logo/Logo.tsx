@@ -229,7 +229,11 @@ export default function Logo() {
     );
   };
 
-  return (
+  const userAgent = window.navigator.userAgent.toLowerCase();
+  const isChrome = userAgent.includes('chrome');
+  return !isChrome ? (
+        <div dangerouslySetInnerHTML={{ __html: svgLogo }} style={{ width: "400px" }} />
+    ) : (
     <div
       style={{
         perspective: '600px',
@@ -250,6 +254,7 @@ export default function Logo() {
           boxShadow:
             '0px 4px 4px 0px rgba(0, 0, 0, 0.32), 0px 8px 12px 6px rgba(0, 0, 0, 0.16)',
           maskImage: 'radial-gradient(circle, rgb(255, 255, 255) 68%, rgba(255, 255, 255, 0) 69%)',
+          // @ts-ignore
           '--webkit-maskImage': 'radial-gradient(circle, rgb(255, 255, 255) 68%, rgba(255, 255, 255, 0) 69%)',
         }}
         className={`${styles.cardFoil} ${styles.cardRotator}`}

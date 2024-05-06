@@ -8,10 +8,6 @@ export default function LoginPage() {
     <Flex as="main" justifyContent="center">
       <VStack spacing={3} alignItems="center" width="450px" mt={6}>
         <Logo />
-        <Text fontWeight="bold" mb="1rem">
-          Welcome to the Leonardo Ai web team challenge.
-        </Text>
-
         <LoginForm />
       </VStack>
     </Flex>
