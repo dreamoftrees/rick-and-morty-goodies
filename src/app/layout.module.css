@@ -1,0 +1,10 @@
+.background {
+  left: 0px;
+  position: absolute;
+  top: 0px;
+  background-color: rgba(214, 81, 169, 0.2);
+  width: 900px;
+  height: 100%;
+  filter: blur(100px);
+  transform: translate(-20%, -10%);
+}

@@ -2,7 +2,8 @@ import type { Metadata } from "next";
 import { Inter } from "next/font/google";
 import "./globals.css";
 import { Providers } from './providers';
-import { cookies } from 'next/headers';
+import styles from './layout.module.css';
+import { Box } from '@chakra-ui/react';
 
 const inter = Inter({ subsets: ["latin"] });
 
@@ -30,6 +31,7 @@ export default function RootLayout({
   return (
     <html lang="en">
     <body className={inter.className}>
+        <Box className={styles.background} />
         <Providers>
           {children}
         </Providers>
