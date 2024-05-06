@@ -1,6 +1,6 @@
 "use client";
 
-import { useRef } from 'react';
+import { useEffect, useRef, useState } from 'react';
 import { adjust, clamp, round } from '@/lib/utils/math';
 import { frame, motion } from 'framer-motion';
 import { Box } from '@chakra-ui/react';
@@ -23,6 +23,7 @@ type SpringGlare = {
 };
 
 export default function Logo() {
+  const [isChrome, setIsChrome] = useState(false);
   const cardRef = useRef<HTMLDivElement>(null);
   const cardRotatorRef = useRef<HTMLDivElement>(null);
   const glarePivot = 100;
@@ -229,12 +230,14 @@ export default function Logo() {
     );
   };
 
-  // Little Chrome detection
-  let isChrome = false;
-  if (typeof window !== 'undefined') {
-    const userAgent = window.navigator.userAgent.toLowerCase();
-    isChrome = userAgent.includes('chrome');
-  }
+  useEffect(() => {
+    // Little Chrome detection
+    if (typeof window !== 'undefined') {
+      const userAgent = window.navigator.userAgent.toLowerCase();
+      setIsChrome(userAgent.includes('chrome'));
+    }
+  }, []);
+
   return !isChrome ? (
         <div dangerouslySetInnerHTML={{ __html: svgLogo }} style={{ width: "400px" }} />
     ) : (
