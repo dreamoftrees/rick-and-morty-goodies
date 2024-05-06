@@ -16,7 +16,7 @@ export default function GalleryLayout(props: {
 }) {
   return (
     <>
-      <Header/>
+      <Header />
       {props.modal}
       <Box mt="110px">
         {props.children}

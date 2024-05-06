@@ -4,10 +4,9 @@ import Brand from '@/components/header/Brand';
 
 type HeaderProps = {
   children?: React.ReactNode;
-  session?: any;
 };
 
-export default function Header({ children, session }: HeaderProps) {
+export default function Header({ children }: HeaderProps) {
   return (
     <Flex as="header"
           px="5"
@@ -25,7 +24,7 @@ export default function Header({ children, session }: HeaderProps) {
         {children}
       </Box>
 
-      <ProfileMenu session={session} />
+      <ProfileMenu />
     </Flex>
   );
 }

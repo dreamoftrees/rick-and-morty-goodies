@@ -4,7 +4,7 @@ import { Avatar, Heading, Hide, HStack, SkeletonCircle, SkeletonText, Text, VSta
 import { useSession } from '@/lib/session/SessionProvider';
 import NextLink from 'next/link';
 
-export default function ProfileMenu({ session }: { session: any }) {
+export default function ProfileMenu() {
   const { name, title } = useSession();
 
   return (
