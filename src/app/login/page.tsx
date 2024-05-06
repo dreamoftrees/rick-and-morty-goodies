@@ -6,7 +6,7 @@ export default function LoginPage() {
 
   return (
     <Flex as="main" justifyContent="center">
-      <VStack spacing={3} alignItems="center" width="450px" mt={6}>
+      <VStack spacing={3} alignItems="center" width="350px" mt={6}>
         <Logo />
         <LoginForm />
       </VStack>

@@ -229,8 +229,12 @@ export default function Logo() {
     );
   };
 
-  const userAgent = window.navigator.userAgent.toLowerCase();
-  const isChrome = userAgent.includes('chrome');
+  // Little Chrome detection
+  let isChrome = false;
+  if (typeof window !== 'undefined') {
+    const userAgent = window.navigator.userAgent.toLowerCase();
+    isChrome = userAgent.includes('chrome');
+  }
   return !isChrome ? (
         <div dangerouslySetInnerHTML={{ __html: svgLogo }} style={{ width: "400px" }} />
     ) : (
