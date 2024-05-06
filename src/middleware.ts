@@ -1,14 +1,12 @@
 import { NextRequest, NextResponse } from 'next/server';
 
-// Define the protected and public routes
-const protectedRoutes = ['/gallery', '/'];
-const publicRoutes = ['/login'];
+// Define the protected routes
+const protectedRoutes = ['/gallery', '/gallery/*', '/'];
 
 export function middleware(request: NextRequest) {
 
   const path = request.nextUrl.pathname;
-  const isProtectedRoute = protectedRoutes.includes(path)
-  const isPublicRoute = publicRoutes.includes(path)
+  const isProtectedRoute = protectedRoutes.some((routeRule) => matchPath(path, routeRule));
 
   // Get the session credentials
   const nameToken = request.cookies.get('name');
@@ -26,6 +24,35 @@ export function middleware(request: NextRequest) {
   }
 
   return NextResponse.next();
+}
+
+// Function to match path with route rule with wildcards
+function matchPath(path: string, routeRule: string): boolean {
+  const pathParts = path.split('/');
+  const routeParts = routeRule.split('/');
+
+  // If the number of parts doesn't match, it's not a match
+  if (pathParts.length !== routeParts.length) {
+    return false;
+  }
+
+  for (let i = 0; i < pathParts.length; i++) {
+    const pathPart = pathParts[i];
+    const routePart = routeParts[i];
+
+    // If the route part is a wildcard '*', it matches anything
+    if (routePart === '*') {
+      continue;
+    }
+
+    // If the route part is not a wildcard and doesn't match the path part, it's not a match
+    if (pathPart !== routePart) {
+      return false;
+    }
+  }
+
+  // All parts match, it's a match
+  return true;
 }
 
 // Routes Middleware should not run on
