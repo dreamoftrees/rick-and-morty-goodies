@@ -26,8 +26,9 @@ export default function GalleryNavigation({
         <Tooltip label={`Previous`}>
           <NextLink href={`/gallery/${pageInfo.prev}`}>
             <IconButton
-              aria-label='Previous Page'
-              size='lg'
+              colorScheme="blue"
+              aria-label="Previous Page"
+              size="lg"
               icon={<ChevronLeftIcon />}
             />
           </NextLink>
@@ -40,8 +41,9 @@ export default function GalleryNavigation({
         <Tooltip label={`Next`}>
           <NextLink href={`/gallery/${pageInfo.next}`}>
             <IconButton
-              aria-label='Next Page'
-              size='lg'
+              colorScheme="blue"
+              aria-label="Next Page"
+              size="lg"
               icon={<ChevronRightIcon />}
             />
           </NextLink>

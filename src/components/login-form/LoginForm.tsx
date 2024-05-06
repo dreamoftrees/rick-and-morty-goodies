@@ -114,7 +114,7 @@ export default function LoginForm({
         )}
       </FormControl>
 
-      <Button size="lg" onClick={handleSubmit}>
+      <Button size="lg" onClick={handleSubmit} colorScheme="blue">
         {submitLabel}
       </Button>
     </Stack>
