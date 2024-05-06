@@ -15,6 +15,8 @@ export default function LogoutForm() {
       setLoading(true);
       await logout();
       router.push('/');
+      router.refresh();
+
     } catch (error) {
       setLoading(false);
       console.error('Error logging out', error);
