@@ -29,7 +29,6 @@ export const SessionProvider = ({ children }: { children: ReactNode }): any => {
         }
 
         const sessionProfile: SessionProfile = await result.json();
-        console.log('Loaded profile', sessionProfile);
         setProfile(sessionProfile);
       } catch (error) {
         console.error('Error loading session', error);
@@ -49,7 +48,6 @@ export const SessionProvider = ({ children }: { children: ReactNode }): any => {
         body: JSON.stringify({name, title})
       });
       const sessionProfile = await result.json();
-      console.log('Logged in', sessionProfile);
       setProfile(sessionProfile);
       return sessionProfile;
 
@@ -66,7 +64,6 @@ export const SessionProvider = ({ children }: { children: ReactNode }): any => {
         method: 'POST',
         headers: {'Content-Type': 'application/json'},
       });
-      console.log('Logged out');
       setProfile(null);
 
     } catch (error) {

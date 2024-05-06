@@ -8,5 +8,4 @@ const config: ThemeConfig = {
 
 const theme = extendTheme({ config });
 
-console.log('Theme created', theme);
 export default theme;

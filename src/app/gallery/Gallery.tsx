@@ -51,7 +51,6 @@ export default function Gallery({ page = '1' }: { page?: string }) {
       `,
     })
     .then((result) => {
-      console.log('gallery results:', result);
       setLoaded(true);
       setPageInfo(result.data.characters.info);
       setGalleryItems(result.data.characters.results);

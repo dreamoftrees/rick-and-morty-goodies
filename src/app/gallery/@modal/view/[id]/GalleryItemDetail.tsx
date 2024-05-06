@@ -63,7 +63,6 @@ export default function GalleryItemDetail({ id }: GalleryItemDetailProps) {
       `,
     })
     .then((result) => {
-      console.log('item results:', result);
       setLoaded(true);
       setItemDetail(result.data.character);
     });
