@@ -1,4 +1,5 @@
 import { NextRequest } from 'next/server';
+import { cookies } from 'next/headers';
 
 /**
  * Logout and flush the credentials (clear the cookies).
@@ -9,18 +10,13 @@ import { NextRequest } from 'next/server';
 export async function POST (request: NextRequest, response: Response) {
 
   // Clear the authentication cookie
-  const headers = new Headers({
-    'Content-Type': 'application/json',
-  });
+  cookies().delete('name');
+  cookies().delete('title');
 
-  // Set the 'name' cookie
-  headers.append('Set-Cookie', `name=; Path=/; HttpOnly; SameSite=Strict; Max-Age=0; Expires=Thu, 01 Jan 1970 00:00:00 GMT`);
-
-  // Set the 'title' cookie
-  headers.append('Set-Cookie', `title=; Path=/; HttpOnly; SameSite=Strict; Max-Age=0; Expires=Thu, 01 Jan 1970 00:00:00 GMT`);
-
-  return new Response('{}', {
+  return new Response(null, {
     status: 200,
-    headers,
+    headers: new Headers({
+      'Content-Type': 'application/json',
+    }),
   });
 }

@@ -21,8 +21,6 @@ export async function GET (request: NextRequest) {
   }
 
   // Respond with the session data
-  // TODO: Refactor session handling to utilize JWTs for secure and scalable token management, or
-  // implement a more persistent caching solution (Redis / Memcached) for session data to enhance security and performance.
   const responseBody = JSON.stringify({ name: nameToken?.value, title: titleToken?.value });
   return new Response(responseBody, {
     status: 200,
