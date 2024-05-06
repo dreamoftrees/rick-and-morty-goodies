@@ -1,0 +1,241 @@
+/*
+
+  GOLD FOIL
+
+*/
+
+.cardFoil {
+  position: relative;
+  display: block;
+  background-image: url('/logo/gold.webp');
+  background-size: cover;
+  padding: 1px;
+  border-radius: 10px;
+  --card-aspect: 0.718;
+  --card-radius: 4.55% / 3.5%;
+  -webkit-transform: scale(var(--card-scale));
+  transform: scale(var(--card-scale));
+}
+
+/*
+
+  GOLD SHINE LAYERS
+
+*/
+
+.cardGold__cardShine {
+  --foil: url('/logo/gold.webp');
+  --shift: 1px;
+  --imgsize: cover;
+
+  background-image: var(--glitter), var(--glitter),
+  radial-gradient(
+          farthest-corner circle at var(--pointer-x) var(--pointer-y),
+          hsla(150, 00%, 0%, 0.98) 10%,
+          hsla(0, 0%, 95%, 0.15) 90%
+  );
+
+  background-size: var(--glittersize) var(--glittersize),
+  var(--glittersize) var(--glittersize),
+  cover,
+  cover;
+  background-position: 45% 45%,
+  55% 55%,
+  center center,
+  center center;
+  background-blend-mode: soft-light, hard-light, overlay;
+  mix-blend-mode: color-dodge;
+  filter: brightness(calc(0.4 + (var(--pointer-from-center) * 0.2))) contrast(1) saturate(2.7);
+}
+
+.cardGold__cardShine:before {
+  content: '';
+  -webkit-mask-image: none !important;
+  mask-image: none !important;
+
+  background-image: var(--foil),
+  linear-gradient(45deg, hsl(46, 95%, 50%), hsl(52, 100%, 69%)),
+  radial-gradient(
+          farthest-corner circle at var(--pointer-x) var(--pointer-y),
+          hsla(10, 20%, 90%, 0.95) 10%,
+          hsl(0, 0%, 0%) 70%
+  );
+
+  background-size: var(--imgsize), cover, cover;
+  background-position: center center,
+  center center,
+  center center;
+  background-blend-mode: hard-light, multiply;
+
+  mix-blend-mode: lighten;
+  filter: brightness(0.85) contrast(1.25) saturate(1.15);
+  opacity: 0.3;
+}
+
+.cardGold__cardShine:after {
+  content: '';
+  -webkit-mask-image: none !important;
+  mask-image: none !important;
+
+  background-image: var(--glitter);
+  background-size: var(--glittersize) var(--glittersize);
+  background-position: calc(
+          50% - ((var(--shift) * 2) * var(--pointer-from-left)) + var(--shift)
+  ) calc(50% - ((var(--shift) * 2) * var(--pointer-from-top)) + var(--shift));
+
+  filter: brightness(calc((var(--pointer-from-center) * 0.6) + 0.6)) contrast(1.5);
+  mix-blend-mode: overlay;
+}
+
+/*
+
+  CARD
+
+*/
+
+.card {
+  --grain: url('/logo/grain.webp');
+  --glitter: url('/logo/glitter.webp');
+  --glittersize: calc(55% + (20% * var(--seedx)));
+  --card-opacity: 0.2;
+  --space: 5%;
+  --angle: 133deg;
+  --imgsize: cover;
+
+  /* place the card on a new transform layer and
+  make sure it has hardward acceleration... we gun'need that! */
+  -webkit-transform: translate3d(0px, 0px, 0.01px);
+  transform: translate3d(0px, 0px, 0.01px);
+  -webkit-transform-style: preserve-3d;
+  transform-style: preserve-3d;
+  pointer-events: none;
+
+  /* make sure the card is above others if it's scaled up */
+  z-index: calc(var(--card-scale) * 2);
+
+  /* every little helps! */
+  will-change: transform, visibility, z-index;
+}
+
+.card,
+.card * {
+  /* outline is a little trick to anti-alias */
+  outline: 1px solid transparent;
+}
+
+.card,
+.cardRotator {
+  aspect-ratio: var(--card-aspect);
+  border-radius: var(--card-radius);
+}
+
+.cardRotator {
+  display: grid;
+  will-change: transform, box-shadow;
+  -webkit-transform: rotateY(var(--rotate-x)) rotateX(var(--rotate-y));
+  -webkit-transform-style: preserve-3d;
+  -webkit-transform-origin: center;
+  transform: rotateY(var(--rotate-x)) rotateX(var(--rotate-y));
+  transform-style: preserve-3d;
+  transform-origin: center;
+
+  /* performance */
+  pointer-events: auto;
+  /* overflow: hidden; <-- this improves perf on mobile, but breaks backface visibility. */
+  /* isolation: isolate; <-- this improves perf, but breaks backface visibility on Chrome. */
+}
+
+.cardRotator {
+  transition: box-shadow 0.4s ease,
+  opacity 0.33s ease-out,
+  transform 0.3s ease-out;
+  box-shadow: 0 0 3px -1px transparent,
+  0 0 2px 1px transparent,
+  0 0 5px 0px transparent,
+  0px 10px 20px -5px black,
+  0 2px 15px -5px black,
+  0 0 20px 0px transparent;
+}
+
+.cardRotator * {
+  width: 100%;
+  image-rendering: optimizeQuality;
+  -webkit-transform-style: preserve-3d;
+  transform-style: preserve-3d;
+  pointer-events: none;
+  overflow: hidden;
+}
+
+.cardRotator img {
+  height: auto;
+  -webkit-transform: translate3d(0px, 0px, 0.01px);
+  transform: translate3d(0px, 0px, 0.01px);
+}
+
+.cardInteracting {
+  z-index: calc(var(--card-scale) * 120);
+}
+
+/*
+
+  FOIL / SHINE
+
+*/
+
+.cardShine {
+  will-change: transform, opacity, background-image, background-size,
+  background-position, background-blend-mode, filter;
+
+  display: grid;
+  transform: translateZ(1px);
+  overflow: hidden;
+  z-index: 3;
+
+  background: transparent;
+  background-size: cover;
+  background-position: center;
+
+  filter: brightness(0.85) contrast(2.75) saturate(0.65);
+  mix-blend-mode: color-dodge;
+
+  opacity: var(--card-opacity);
+  transition: opacity 1200ms ease-out;
+}
+
+.cardShine:before,
+.cardShine:after {
+  grid-area: 1/1;
+  transform: translateZ(1px);
+  border-radius: var(--card-radius);
+}
+
+.cardShine:after {
+  transform: translateZ(1.2px);
+}
+
+/*
+
+  GLARE LAYER
+
+*/
+
+.cardGlare {
+  will-change: transform, opacity, background-image, background-size,
+  background-position, background-blend-mode, filter;
+
+  /* make sure the glare doesn't clip */
+  transform: translateZ(1.41px);
+  overflow: hidden;
+
+  background-image: radial-gradient(
+          farthest-corner circle at var(--pointer-x) var(--pointer-y),
+          hsla(0, 0%, 100%, 0.7) 10%,
+          hsla(0, 0%, 100%, 0.55) 20%,
+          hsla(0, 0%, 0%, 0.5) 90%
+  );
+
+  opacity: var(--card-opacity);
+  transition: opacity 1200ms ease;
+  mix-blend-mode: overlay;
+  filter: brightness(1) contrast(1.8);
+}
