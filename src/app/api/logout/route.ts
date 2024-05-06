@@ -14,10 +14,10 @@ export async function GET (request: NextRequest, response: Response) {
   });
 
   // Set the 'name' cookie
-  headers.append('Set-Cookie', `name=; Path=/; HttpOnly; SameSite=Strict`);
+  headers.append('Set-Cookie', `name=; Path=/; HttpOnly; SameSite=Strict; Expires=Thu, 01 Jan 1970 00:00:00 GMT`);
 
   // Set the 'title' cookie
-  headers.append('Set-Cookie', `title=; Path=/; HttpOnly; SameSite=Strict`);
+  headers.append('Set-Cookie', `title=; Path=/; HttpOnly; SameSite=Strict; Expires=Thu, 01 Jan 1970 00:00:00 GMT`);
 
   return new Response('{}', {
     status: 200,
