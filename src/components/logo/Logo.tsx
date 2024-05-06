@@ -239,14 +239,14 @@ export default function Logo() {
   }, []);
 
   return !isChrome ? (
-        <div dangerouslySetInnerHTML={{ __html: svgLogo }} style={{ width: "400px" }} />
+        <div dangerouslySetInnerHTML={{ __html: svgLogo }} style={{ width: "300px" }} />
     ) : (
     <div
       style={{
         perspective: '600px',
         transformStyle: 'preserve-3d',
-        width: '400px',
-        height: '400px',
+        width: '300px',
+        height: '300px',
         cursor: 'pointer',
       }}
     >
@@ -278,7 +278,7 @@ export default function Logo() {
           }}
           className={`${styles.card} ${styles.cardInteracting}`}
         >
-          <div dangerouslySetInnerHTML={{ __html: svgLogo }} style={{ width: "400px" }} />
+          <div dangerouslySetInnerHTML={{ __html: svgLogo }} style={{ width: "300px" }} />
           <Box
             className={`${styles.cardShine} ${styles.cardGold__cardShine}`}
             sx={{
