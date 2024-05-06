@@ -1,12 +1,10 @@
 "use client";
 
-import { Avatar, Box, Heading, Hide, HStack, Show, SkeletonCircle, SkeletonText, Text, VStack } from '@chakra-ui/react';
-import { useRouter } from 'next/navigation';
+import { Avatar, Heading, Hide, HStack, SkeletonCircle, SkeletonText, Text, VStack } from '@chakra-ui/react';
 import { useSession } from '@/lib/session/SessionProvider';
 import NextLink from 'next/link';
 
 export default function ProfileMenu({ session }: { session: any }) {
-  const router = useRouter();
   const { name, title } = useSession();
 
   return (
